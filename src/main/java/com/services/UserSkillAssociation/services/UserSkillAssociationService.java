@@ -22,9 +22,10 @@ public class UserSkillAssociationService {
         return ResponseEntity.ok().body(_userSkillAssociationRepo.findById(id));
     }
 
-    public ResponseEntity addUSAs(UserSkillAssociationEntity usae) {
+    public ResponseEntity addUSAs(String email, String skill) {
         try {
-            if(!(_userSkillAssociationRepo.existsByUserEmailAndSkillId(usae.getUserEmail(), usae.getSkillId()))){
+            if(!(_userSkillAssociationRepo.existsByUserEmailOrSkill(email, skill))){
+            UserSkillAssociationEntity usae = new UserSkillAssociationEntity(email, skill);
             _userSkillAssociationRepo.save(usae);
             return ResponseEntity.ok().body("Successfully added the association");}
             else return ResponseEntity.ok().body("Association already exists");

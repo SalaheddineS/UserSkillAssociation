@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserSkillAssociationRepo extends JpaRepository<UserSkillAssociationEntity, Integer> {
-        boolean existsByUserEmailAndSkillId(String userEmail, int skillId);
+        boolean existsByUserEmailOrSkill(String userEmail, String skillId);
 
 
 }

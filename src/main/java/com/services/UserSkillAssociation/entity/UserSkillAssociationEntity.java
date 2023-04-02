@@ -11,18 +11,18 @@ public class UserSkillAssociationEntity {
     @GeneratedValue
     private int id;
     private String userEmail;
-    private int skillId;
+    private String skill;
     private Date skillAdditionDate=new Date();
 
-    public UserSkillAssociationEntity(int id, String userEmail, int skillId) {
+    public UserSkillAssociationEntity(int id, String userEmail, String skill) {
         this.id = id;
         this.userEmail = userEmail;
-        this.skillId = skillId;
+        this.skill = skill;
     }
 
-    public UserSkillAssociationEntity(String userEmail, int skillId) {
+    public UserSkillAssociationEntity(String userEmail, String skill) {
         this.userEmail = userEmail;
-        this.skillId = skillId;
+        this.skill = skill;
     }
 
     public UserSkillAssociationEntity() {
@@ -44,12 +44,12 @@ public class UserSkillAssociationEntity {
         this.userEmail = userEmail;
     }
 
-    public int getSkillId() {
-        return skillId;
+    public String getSkill() {
+        return skill;
     }
 
-    public void setSkillId(int skillId) {
-        this.skillId = skillId;
+    public void setSkill(String skill) {
+        this.skill = skill;
     }
 
     public Date getSkillAdditionDate() {

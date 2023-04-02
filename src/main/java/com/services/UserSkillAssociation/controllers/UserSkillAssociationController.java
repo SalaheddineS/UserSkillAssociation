@@ -2,6 +2,7 @@ package com.services.UserSkillAssociation.controllers;
 
 import com.services.UserSkillAssociation.RESTapi.RequestingFromSkillsMS;
 import com.services.UserSkillAssociation.entity.UserSkillAssociationEntity;
+import com.services.UserSkillAssociation.repositories.UserSkillAssociationRepo;
 import com.services.UserSkillAssociation.services.UserSkillAssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import java.util.Map;
 @RequestMapping("/api/v1/association")
 public class UserSkillAssociationController {
     @Autowired
+    UserSkillAssociationRepo _userSkillAssociationRepo;
+    @Autowired
     UserSkillAssociationService _userSkillAssociationService;
     @Autowired
     RequestingFromSkillsMS _requestingFromSkillsMS;
@@ -31,8 +34,8 @@ public class UserSkillAssociationController {
     }
 
     @PostMapping("/addAssociation")
-    public ResponseEntity post(@RequestBody UserSkillAssociationEntity userSkillAssociationEntity){
-        return _userSkillAssociationService.addUSAs(userSkillAssociationEntity);
+    public ResponseEntity post(@RequestBody Map<String,String> info){
+        return _userSkillAssociationService.addUSAs(info.get("email"), info.get("skill"));
     }
 
        @DeleteMapping("/deleteAssociation/{id}")
@@ -43,5 +46,7 @@ public class UserSkillAssociationController {
     public ResponseEntity update(@RequestBody UserSkillAssociationEntity userSkillAssociationEntity){
         return _userSkillAssociationService.updateUSAs(userSkillAssociationEntity);
     }
+
+
 }
 
